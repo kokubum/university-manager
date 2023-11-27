@@ -145,8 +145,8 @@ export class ValidateService {
   }
 
   passwordFormat(password: string, ...options: string[]): void {
-    if (password.length < 10) {
-      const errorMessage = AppError.buildErrorMessage(options, "This field must be longer or equal to 10 characters");
+    if (password.length < 5) {
+      const errorMessage = AppError.buildErrorMessage(options, "This field must be longer or equal to 5 characters");
       throw new AppError("Invalid password field", 400, errorMessage);
     }
   }

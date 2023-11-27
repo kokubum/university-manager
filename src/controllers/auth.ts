@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
 import * as bcrypt from "bcrypt";
+import { Request, Response } from "express";
 import { EmailBody, LoginBody, RecoverPasswordBody, SignUpBody } from "../@types/auth.types";
 import { AppError } from "../helpers/appError";
 import { checkTokenExpiration } from "../helpers/auth";
@@ -43,10 +43,13 @@ export async function login(req: Request, res: Response) {
 
   const session = await ctx.db.sessionRepository.createSession(user.id);
 
+  const patient = await ctx.db.patientRepository.findByEmail(user.email);
+
   return res.status(200).send({
     status: "success",
     data: {
       token: session.token,
+      patientId: patient.id,
     },
   });
 }

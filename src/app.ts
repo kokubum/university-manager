@@ -24,9 +24,6 @@ class AppController {
     this.app.use("/api/v1/lines", lineRouter);
     this.app.all("*", notFoundUrlHandler);
     this.app.use(globalErrorHandler);
-
-    // eslint-disable-next-line no-underscore-dangle
-    console.log("here", this.app._router, this.app.routes);
   }
 }
 
